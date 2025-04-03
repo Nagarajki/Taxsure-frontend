@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React from 'react'
+import SideBarComponent from './components/side-bar/SideBarComponent'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import Dashboard from './screens/dashboard/Dashboard'
+import Registration from './screens/auth/Registration'
+import Login from './screens/auth/Login'
 import './App.css';
+import TopBar from './components/top-bar/TopBar'
+import LandingPage from './screens/landing-page/LandingPage'
 
-function App() {
+const App = () => {
+  const location = useLocation();
+
+  const topBarShow = [
+    "/",
+    "/sign-in",
+    "/sign-up"
+  ]
+  const sideBarShow = [
+    "/dashboard"
+  ]
+
+  const topBar = topBarShow.includes(location.pathname);
+  const sideBar = sideBarShow.includes(location.pathname);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {topBar && <TopBar />}
+      <div className="app">
+        {sideBar && <SideBarComponent />}
+        <div className="content">
+          <Routes>
+            <Route path='/'>
+              <Route index element={<Dashboard />} />
+              <Route path='sign-in' element={<Login />} />
+              <Route path='sign-up' element={<Registration />} />
+              <Route path='dashboard' element={<LandingPage />} />
+            </Route>
+          </Routes>
+        </div>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
