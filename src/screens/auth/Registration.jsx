@@ -1,7 +1,6 @@
-import { Box, Button, Typography, TextField, InputAdornment, IconButton, CircularProgress, Grid } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
+import { Box, Button, Typography, Grid } from '@mui/material';
 import { Formik } from 'formik';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as yup from "yup";
 import TextFieldComponent from '../../utils/TextFieldComponent';
 import { Link, useNavigate } from 'react-router-dom';
@@ -28,7 +27,7 @@ const Registration = () => {
     });
 
     const handleFormSubmit = async (values, { resetForm }) => {
-        console.log("values", values)
+        // console.log("values", values)
         const response = await dispatch(signUp(values))
         if (response && response?.payload) {
             await Swal.fire({

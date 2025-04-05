@@ -1,6 +1,6 @@
-import { Apartment, ArrowBackIosNewOutlined, Calculate, CalendarMonth, Dashboard, Folder, Groups, HelpOutline, LoginOutlined, MenuOutlined, PlaylistAddCheck, RoomPreferences, Summarize, } from '@mui/icons-material'
+import { Apartment, ArrowBackIosNewOutlined, Calculate, CalendarMonth, Dashboard, Folder, Groups, HelpOutline, LoginOutlined, MenuOutlined, PlaylistAddCheck, Summarize, } from '@mui/icons-material'
 import { Box, Tooltip, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar'
 import { UseAuth } from '../../customhooks/UseAuth'
 import { sideBarTitles } from '../../GlobalTitles'
@@ -44,7 +44,7 @@ const Items = ({ label, icon, color, onClickAction, active }) => {
 const SideBarComponent = () => {
     const { roles } = UseAuth();
     const [show, setHide] = useState(false);
-    const [activeItem, setActiveItem] = useState('');
+    // const [activeItem, setActiveItem] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     // console.log("activeItem", activeItem)
@@ -52,17 +52,17 @@ const SideBarComponent = () => {
 
     const handleNavigation = (path) => {
         navigate(path);
-        setActiveItem(path); // Update the active item when navigating
+        // setActiveItem(path); // Update the active item when navigating
     };
 
-    useEffect(() => {
-        // Extract the pathname from location object and set the active item accordingly
-        setActiveItem(location.pathname);
-    }, [location]);
+    // useEffect(() => {
+    //     // Extract the pathname from location object and set the active item accordingly
+    //     setActiveItem(location.pathname);
+    // }, [location]);
 
     const logOutHandler = () => {
         navigate('/sign-in');
-        localStorage.clear('Taxsure');
+        localStorage.removeItem('Taxsure');
     };
 
     const isActivePath = (path) => {

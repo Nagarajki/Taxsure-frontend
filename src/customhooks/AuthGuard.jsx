@@ -3,14 +3,14 @@ import { UseAuth } from "./UseAuth";
 // import Swal from "sweetalert2";
 
 const AuthGuard = ({ children }) => {
-    const { roles } = UseAuth();
+    const {role_id} = UseAuth();
     const authRoles = [
         1000,
         2000,
-        3000
+        3000,
+        5000
     ]
-    console.log("roles", roles)
-    if (roles && roles?.roleId === undefined) {
+    if (role_id === undefined) {
         // Swal.fire({
         //     icon: "error",
         //     title: "Unauthorized Access",
@@ -18,7 +18,7 @@ const AuthGuard = ({ children }) => {
         // });
         return <Navigate to={'/sign-in'} />
     }
-    const rolesMatch = authRoles.includes(roles?.roleId);
+    const rolesMatch = authRoles.includes(role_id);
     if (!rolesMatch) {
         // Swal.fire({
         //     icon: "error",
